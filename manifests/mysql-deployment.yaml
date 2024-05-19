@@ -11,6 +11,8 @@ spec:
       labels:
         app: mysql
     spec:
+      securityContext:
+        runAsUser: 999
       containers:
       - name: mysql
         image: mysql:5.7
@@ -28,6 +30,9 @@ spec:
         volumeMounts:
         - name: mysql-storage
           mountPath: /var/lib/mysql
+        securityContext:
+          runAsUser: 999
+          runAsGroup: 999
       volumes:
       - name: mysql-storage
         persistentVolumeClaim:
